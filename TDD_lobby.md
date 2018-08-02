@@ -5,6 +5,7 @@ describe ("lobby", ()=>{
 	it ("should have a button to join random public room")
 	it ("should have a session for create private room")
 	it ("should have a session for joining private room")
+    it ("should check if user comes through an invitation link")
 
 	describe ("user info session", ()=>{
 	it ("should show player icon, username, scores, rank")
@@ -80,10 +81,14 @@ describe ("lobby", ()=>{
     })
 
     describe ("join private room session", ()=>{
+        it ("should have a link input box")
+        it ("should have a join button")
+
         describe ("link input box", ()=>{
             it ("should allow player to paste invitation link")
         })
         describe ("join button", ()=>{
+            it ("should only activate when a link is entered")
             it ("should allow player to join the room when clicked")
             it ("should prompt player room does not exist if room is not found")
         })
@@ -99,6 +104,17 @@ describe ("lobby", ()=>{
                 it ("should redirect player to game page")
             })
         })
+    })
+
+    describe ("invitation link", ()=>{
+        it ("should be generated when a game room is created")
+        it ("should be unique")
+        it ("should consist of `game_id` param")
+    })
+
+    describe ("if user comes through an invitation link", ()=>{
+        it ("should automatically join room as if user manually joined it")
+        // read "join private room session" for details"
     })
 })
 
