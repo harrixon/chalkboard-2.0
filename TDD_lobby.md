@@ -29,13 +29,75 @@ describe ("lobby", ()=>{
         it ("should allow settings on category")
         it ("should allow settings on number of rounds")
         it ("should have a create game button")
-        it ("should have a cancel button")
+        it ("should have a delete room button")
+        it ("should have a start game button")
         it ("should show which player is in the created room")
-        it ("should show which player is in the created room and ready to start game")
+        it ("should show which player is in the room and is ready to start game")
 
-        describe ("create game button is clicked", ()=>{
-            it ("should create a new room in DB and socket")
-            it ("should change to 'Click when ready' button")
+        descrbe ("create game button", ()=>{
+            it ("should only be available to creator")
+
+            describe ("when create game button is clicked", ()=>{
+                it ("should create a new room in DB and socket with chosen settings")
+                it ("should change to 'Delete Room' button")
+                it ("should activate 'Ready' button")
+                it ("should show the creator is in the created room")
+            })
+            describe ("when delete room button is clicked", ()=>{
+                it ("should kick ALL players out of the game room, ie change active_game_id")
+                it ("should change 'Delete Room' button back to 'Create Game'")
+                it ("should in-activate 'Ready' button")
+                it ("should restore all setting inputs to default")
+            })
+        })
+
+        describe ("ready button", ()=>{
+            describe ("when 'Ready' button is clicked", ()=>{
+                it ("should show everyone in this room that this player is in the room and is ready to start game")
+                it ("should change to 'Not ready' button, ie toggle CSS to show state")
+            })
+
+            describe ("when 'Click if not ready' button is clicked", ()=>{
+                it ("should show everyone in this room that this player is in the room")
+                it ("should change to 'Ready' button, ie toggle CSS to show state")
+            })
+        })
+
+        describe ("start game button", ()=>{
+            it ("should only be available to creator")
+            it ("should only activate when all player in room is ready")
+
+            describe ("when start game button is clicked", ()=>{
+                it ("should redirect all player in room to game page")
+            })
+        })
+
+        describe ("invitation link", ()=>{
+            it ("should be generated when a room is created")
+            it ("should come with a copy link button")
+            it ("should have a structure of ......")
+        })
+    })
+
+    describe ("join private room session", ()=>{
+        describe ("link input box", ()=>{
+            it ("should allow player to paste invitation link")
+        })
+        describe ("join button", ()=>{
+            it ("should allow player to join the room when clicked")
+            it ("should prompt player room does not exist if room is not found")
+        })
+        describe ("when a player join a room successfully", ()=>{
+            it ("should in-activate both input box and join button")
+            
+            describe ("create private room session", ()=>{
+                it ("should be populated with game room details")
+                it ("should only activate 'Ready' button")
+            })
+
+            describe ("when creator starts game", ()=>{
+                it ("should redirect player to game page")
+            })
         })
     })
 })
