@@ -44,7 +44,7 @@ describe ("landing page", ()=>{
                 it ("should allow user to sign up with username and pw provided")
 
                 describe ("successful sign up", ()=>{
-                    it ("should auto login for user)
+                    it ("should auto login for user, done by front end")
                 })
             })
         })
