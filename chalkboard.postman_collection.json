@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "464fbf0e-b03c-450a-bd88-ab3db6e2017c",
+		"name": "chalkboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "be78944c-2cc2-4a5f-9e95-956ca09fcedf",
+			"name": "sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "harrison",
+							"description": "not null, unique"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"description": "not null"
+						}
+					]
+				},
+				"url": {
+					"raw": "api_server/auth/signUp",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"auth",
+						"signUp"
+					]
+				},
+				"description": "New user sign up\n\nauth: OAuth 2.0\n\nrequest:\n<ol>form-data: `username`, `password`</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>server side login</ol>\n<ol>server side redirect to lobby</ol>\n<ol>return with `chalkBoardToken`</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>\n<ol>return with error status/message for display</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e42492f2-5217-497a-a63f-078c8b179457",
+			"name": "sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "harrison",
+							"description": "not null, unique"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"description": "not null"
+						}
+					]
+				},
+				"url": {
+					"raw": "api_server/auth/signIn",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"auth",
+						"signIn"
+					]
+				},
+				"description": "Old user log in\n\nauth: OAuth 2.0\n\nrequest:\n<ol>form-data: `username`, `password`</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>server side redirect to lobby page</ol>\n<ol>return with `chalkBoardToken`</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>\n<ol>return with error status/message for display</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "3e4a176e-8131-4ff5-b77c-53c01ef7c881",
+			"name": "facebook sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "facebookLoginToken",
+							"value": "\"facebookLoginToken\"",
+							"sessionValue": "\"facebookLoginToken\"",
+							"description": "provided by FB",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api_server/auth/FBSignIn",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"auth",
+						"FBSignIn"
+					]
+				},
+				"description": "User sign in with facebook account, FB_token provided by FB\n> used by both sign up and sign in\n\nauth: OAuth 2.0\n\nrequest:\n<ol>`facebookLoginToken`</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>redirect to lobby page</ol>\n<ol>return with `chalkBoardToken`</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>\n<ol>return with error status/message for display</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "6a425767-a0cd-44c3-b7ad-cec091c28746",
+			"name": "landing page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/page/landing",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"page",
+						"landing"
+					]
+				},
+				"description": "Load landing page\n\nauth: -\n\nrequest: -\n\nresponse - successful:\n<ol>status code: 200</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c560e1b1-3016-4c86-b28d-9c644a0c3c84",
+			"name": "lobby page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/page/lobby?ID=\"gameRoomID\"",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"page",
+						"lobby"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "\"gameRoomID\""
+						}
+					]
+				},
+				"description": "Load lobby page\r\n> profile, friend list, room info to be fetched on document load\r\n\r\nauth:\r\n<ol>OAuth 2.0 access token</ol>\r\n\r\nrequest:\r\n<ol>param(optional): `gameRoomID`</ol>\r\n\r\nresponse - successful:\r\n<ol>status code: 200</ol>\r\n<ol>valid ID: also return json of `gameRoomInfo`</ol>\r\n\r\nresponse - failed:\r\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "3426966d-c4a1-437d-abdf-4c474e24669d",
+			"name": "game page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/page/game",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"page",
+						"game"
+					]
+				},
+				"description": "Load game page\r\n> dynamic content will be provided by socket.io\r\n\r\nauth:\r\n<ol>OAuth 2.0 access token</ol>\r\n\r\nrequest: -\r\n\r\nresponse - successful:\r\n<ol>status code: 200</ol>\r\n\r\nresponse - failed:\r\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "6818b2c7-0975-45e2-8244-582e168d3d76",
+			"name": "profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/user/profile",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"user",
+						"profile"
+					]
+				},
+				"description": "Get user profile for display according to token\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest: -\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>return json of `userProfile`</ol>\n<ol>`userProfile` TBC</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "77ef601b-2fd5-48f8-8760-30b9fe389ddf",
+			"name": "friend list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/user/friendList",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"user",
+						"friendList"
+					]
+				},
+				"description": "Get friend list to display according to token\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest: -\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>return json with `friendList`</ol>\n<ol>`friendList` TBC</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>\n"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "351b7ec3-fb1f-498d-98ba-019199c6caef",
+			"name": "search room by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/room/roomInfo?ID=\"gameRoomID\"",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"roomInfo"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "\"gameRoomID\""
+						}
+					]
+				},
+				"description": "Fetch room info with ID provided\n> used when a user join room via invitation link/room ID\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest:\n<ol>param: `gameRoomID`</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>return json of `gameRoomInfo`</ol>\n<ol>`gameRoomInfo` TBC</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "333a25c2-bfe1-4fb1-8167-ced97386486c",
+			"name": "join random room",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/room/randomRoom",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"randomRoom"
+					]
+				},
+				"description": "After clicking \"join random room button\", user will join a random room and be redirected to game page\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest: -\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>server side redirect</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "3f9a1c1d-e192-41b9-b601-12c6e3b55327",
+			"name": "create new room",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "difficulty",
+							"value": "\"normal\"",
+							"sessionValue": "\"normal\"",
+							"description": "normal / difficult",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "\"all\"",
+							"sessionValue": "\"all\"",
+							"description": "all / fruit / ...",
+							"type": "text"
+						},
+						{
+							"key": "rounds",
+							"value": "\"3\"",
+							"sessionValue": "\"3\"",
+							"description": "# of rounds to play",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api_server/room/createRoom",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"createRoom"
+					]
+				},
+				"description": "User create private room to play with friends\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest:\n<ol>`roomSettings = {\n\tdifficulty,\n\tcategory,\n\tround\n\t}`\n</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>return with `gameRoomID` (string)</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "0ba940c7-a71c-4dd6-a548-467825c39f9e",
+			"name": "delete room",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/room/deleteRoom?ID=\"gameRoomID\"",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"deleteRoom"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "\"gameRoomID\""
+						}
+					]
+				},
+				"description": "Room creator can delete the room he/she created\n> when in \"Not Ready\" status only\n\nThis will kick out all user in the room and will delete the room from DB\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest:\n<ol>param: `gameRoomID`</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "b6a01b26-e2c3-4846-8329-2157d1bd2f24",
+			"name": "set ready to play",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/room/isReady",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"isReady"
+					]
+				},
+				"description": "Change user's readyToPlay status to `True`\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest: -\n\nresponse - successful:\n<ol>status code: 200</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e170a712-683a-4644-987e-3669cd516d55",
+			"name": "set not ready to play",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/room/notReady",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"notReady"
+					]
+				},
+				"description": "Change user's readyToPlay status to `False`\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest: -\n\nresponse - successful:\n<ol>status code: 200</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "313232bd-8fb9-4ad2-96cf-a552a23d42e1",
+			"name": "join room by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "\"chalkBoardToken\"",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "api_server/room/joinRoomWithID?ID=\"gameRoomID\"",
+					"host": [
+						"api_server"
+					],
+					"path": [
+						"room",
+						"joinRoomWithID"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "\"gameRoomID\""
+						}
+					]
+				},
+				"description": "User join a room with `gameRoomID`\n\nauth:\n<ol>OAuth 2.0 access token</ol>\n\nrequest:\n<ol>param: `gameRoomID`</ol>\n\nresponse - successful:\n<ol>status code: 200</ol>\n<ol>server side redirect to game page\"</ol>\n\nresponse - failed:\n<ol>status code: 400</ol>"
+			},
+			"response": []
+		}
+	]
+}
