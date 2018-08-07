@@ -11,17 +11,12 @@ Our project aim to provide a platform for friends to play the popular game "Pict
 4. `node app.js`
 
 ### Contributors
-
-harrixon
-lazehang
-terence880
+- harrixon
+- lazehang
+- terence880
 
 ### Tech Stack
-jQuery
-nodeJS
-socker.io
-postgreSQL
-
-### Copyright
-
-MIT license
+- jQuery
+- nodeJS
+- socker.io
+- postgreSQL
