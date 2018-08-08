@@ -3,12 +3,16 @@ In reference to:
 
 ```js
 
-describe("nodeJS routes", ()=>{
+describe("nodeJS services", ()=>{
     it ("should handle authentication with OAuth2.0")
     it ("should only allow access to most pages with valid access token")
     it ("should only allow access to service with valid access token")
     
-    describe ("authentication routes", ()=>{
+    describe ("authentication services", ()=>{
+        describe ("access token validation", ()=>{
+            it ("should accept `chalkBoardToken` as parameter")
+        })
+
         describe ("Sign up service", ()=>{
             it ("should accept a `username` string and `password` string")
             it ("should reject if `username` or `password` is empty")
@@ -50,16 +54,34 @@ describe("nodeJS routes", ()=>{
                 it ("should look for `socialID` in DB")
                 describe ("socialID is found in DB", ()=>{
                     it ("should update `updated_at`, `is_signed_in`, `last_sign_in`")
+                    it ("should return status 200")
                 })
                 describe ("socialID not found in DB", ()=>{
                     it ("should add new row in DB")
+                    it ("should return status 200")
                 })
-                it ("should return status 200")
                 describe ("DB write error", ()=>{
                     it ("should return error status")
                     it ("should return error message")
                 })
             })
+        })
+    })
+
+    describe ("page serving", ()=>{
+        it ("should serve `landing` page to every request")
+        it ("should serve `lobby` and `game` page only to request with access token")
+        
+        describe ("landing page", ()=>{
+            it ("should always just serve the page")
+        })
+
+        describe ("lobby page", ()=>{
+            it ("should validate access token before serving page")
+        })
+
+        describe ("game page", ()=>{
+            it ("should validate access token before serving page")
         })
     })
 })
