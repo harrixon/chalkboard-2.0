@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Chalkboard Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Love Ya Like A Sister' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/landingpage.css">
+</head>
+
+<body>
+    <div class="center">
+        <div class="all">
+            <div class="name">
+                <img id="name" src="./images/name.png">
+            </div>
+
+            <div class="login-with">
+                <img id="login-with" src="./images/login-with.png" width="300px" height="200px">
+
+                <br>
+            </div>
+
+
+            <div class="method">
+
+                
+                <input class="methodIcon" id="facebook" type="image" src="./images/facebook.png" onclick="location.href='lobby.html';"/>
+
+                <input class="methodIcon" id="guest" type="image" src="./images/guest.png" data-toggle="modal" data-target="#signin" />
+                <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title" id="exampleModalLabel">Welcome To ChalkBoard !</h5>
+                            <div class="modal-header">
+                                <h6>Sign In</h6>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div>
+                                        <label for="validationServerUsername">Username</label>
+                                        <!-- <div class="input-group">                                         -->
+                                        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Please enter a username
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="validationServerUsername">Password</label>
+                                        <!-- <div class="input-group">                                         -->
+                                        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Password" aria-describedby="inputGroupPrepend3"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Please enter a password
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.href='lobby.html';">Sign In</button>
+                                <button type="button" class="btn btn-primary" id="noAccount" data-toggle="modal" data-target="#signup">No Account?</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title" id="exampleModalLabel">Welcome To ChalkBoard !</h5>
+                            <div class="modal-header">
+                                <h6>Sign Up</h6>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div>
+                                        <label for="validationServerUsername">Username</label>
+                                        <!-- <div class="input-group">                                         -->
+                                        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Please enter a username
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="validationServerUsername">Password</label>
+                                        <!-- <div class="input-group">                                         -->
+                                        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Password" aria-describedby="inputGroupPrepend3"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Please enter a password
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="validationServerUsername">Confirm Password</label>
+                                        <!-- <div class="input-group">                                         -->
+                                        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Password" aria-describedby="inputGroupPrepend3"
+                                            required>
+                                        <div class="invalid-feedback">
+                                            Those Password didn't match. Try Again !
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="existAccount btn btn-primary" data-dismiss="modal">Sign Up</button>
+                                <button type="button" class="existAccount btn btn-primary">Already Have Account ?</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+<script>
+    $("#noAccount").click(function () {
+        $('#signin').modal('hide')
+        $('#signup').modal('show')
+    });
+    $(".existAccount").click(function () {
+        $('#signup').modal('hide')
+        $('#signin').modal('show')
+    });
+</script>
+
+</html>
