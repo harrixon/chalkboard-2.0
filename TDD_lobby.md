@@ -9,7 +9,7 @@ describe ("lobby", ()=>{
 
 	describe ("user info session", ()=>{
 	it ("should show player icon, username, scores, rank")
-	it ("should pop up a moddle with more info when clicked on")
+	it ("should pop up a modal with more info when clicked on")
     })
 
     describe ("friend list", ()=>{
@@ -25,7 +25,7 @@ describe ("lobby", ()=>{
     })
 
     describe ("create private room session", ()=>{
-        it ("should have input box / drop down menu for game settings)
+        it ("should have input box / drop down menu for game settings")
         it ("should allow settings on difficulty")
         it ("should allow settings on category")
         it ("should allow settings on number of rounds")
@@ -67,6 +67,7 @@ describe ("lobby", ()=>{
         describe ("start game button", ()=>{
             it ("should only be available to creator")
             it ("should only activate when all player in room is ready")
+            it ("should take 'category', 'no of rounds', 'private/public' as params ")
 
             describe ("when start game button is clicked", ()=>{
                 it ("should redirect all player in room to game page")
