@@ -9,9 +9,6 @@ describe("nodeJS services", ()=>{
     it ("should only allow access to service with valid access token")
     
     describe ("authentication services", ()=>{
-        describe ("access token validation", ()=>{
-            it ("should accept `chalkBoardToken` as parameter")
-        })
 
         describe ("Sign up service", ()=>{
             it ("should accept a `username` string and `password` string")
@@ -54,10 +51,12 @@ describe("nodeJS services", ()=>{
                 it ("should look for `socialID` in DB")
                 describe ("socialID is found in DB", ()=>{
                     it ("should update `updated_at`, `is_signed_in`, `last_sign_in`")
+                    it ("should set user session")
                     it ("should return status 200")
                 })
                 describe ("socialID not found in DB", ()=>{
                     it ("should add new row in DB")
+                    it ("should set user session")
                     it ("should return status 200")
                 })
                 describe ("DB write error", ()=>{
@@ -69,19 +68,19 @@ describe("nodeJS services", ()=>{
     })
 
     describe ("page serving", ()=>{
-        it ("should serve `landing` page to every request")
-        it ("should serve `lobby` and `game` page only to request with access token")
+        it ("should serve `landing` page to every other protected requests")
+        it ("should serve `lobby` and `game` page only to authenticated request")
         
         describe ("landing page", ()=>{
             it ("should always just serve the page")
         })
 
         describe ("lobby page", ()=>{
-            it ("should validate access token before serving page")
+            it ("should check session before serving page")
         })
 
         describe ("game page", ()=>{
-            it ("should validate access token before serving page")
+            it ("should check session before serving page")
         })
     })
 })
